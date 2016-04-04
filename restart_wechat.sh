@@ -20,4 +20,4 @@ do
 done
 
 # start
-nohup $GUNICORN_EXEC $WSGI_NAME -b $LISTEN -w $WORKERS -u $USER -g $GROUP --worker-connections $WORKERCONNECTIONS -t $TIMEOUT --keep-alive $KEEPALIVE -D --access-logfile $ACCESS_LOG --error-logfile $ERROR_LOG
+nohup $GUNICORN_EXEC $WSGI_NAME -b $LISTEN -w $WORKERS -u $USER -g $GROUP --worker-connections $WORKERCONNECTIONS -t $TIMEOUT --keep-alive $KEEPALIVE -D --access-logfile $ACCESS_LOG --error-logfile $ERROR_LOG 2>&1 &
