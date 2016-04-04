@@ -135,7 +135,7 @@ LOGGING = {
         'default': {
             'level':'DEBUG',
             'class':'logging.handlers.TimedRotatingFileHandler',
-            'filename': '/log/all.log',     #日志输出文件
+            'filename': 'log/all.log',     #日志输出文件
             'when': 'midnight',
             'interval':1,                  #文件大小
             'backupCount': 5,                         #备份份数

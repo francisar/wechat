@@ -10,6 +10,9 @@ WORKERS=5
 TIMEOUT=120
 WORKERCONNECTIONS=100
 MAX_REQUESTS=40
+USER=nginx
+GROUP=nginx
+ERROR_LOG=/data/logs/gunicorn/wechat_error.log
 # stop
 for pid in `ps -ef|grep $GUNICORN_EXEC|grep $WSGI_NAME|grep -v grep| awk '$3 ==1 {print $2}'`
 do
@@ -17,4 +20,4 @@ do
 done
 
 # start
-nohup $GUNICORN_EXEC $WSGI_NAME -b $LISTEN -w $WORKERS --worker-connections $WORKERCONNECTIONS -t $TIMEOUT     --max-requests $MAX_REQUESTS --keep-alive $KEEPALIVE -D --access-logfile $ACCESS_LOG 2>&1 &
+nohup $GUNICORN_EXEC $WSGI_NAME -b $LISTEN -w $WORKERS -u $USER -g $GROUP --worker-connections $WORKERCONNECTIONS -t $TIMEOUT --max-requests $MAX_REQUESTS --keep-alive $KEEPALIVE -D --access-logfile $ACCESS_LOG --error-logfile $ERROR_LOG
