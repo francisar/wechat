@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding:utf-8 -*-
 """
 Django settings for wechat project.
 
@@ -12,6 +14,23 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+try:
+    import settings_without_git as stg
+
+    DATABASES = stg.Production.DATABASES
+
+    #API_SEND_MAIL = stg.Production.API_SEND_MAIL
+    #API_SEND_WECHAT = stg.Production.API_SEND_WECHAT
+    #API_SEND_RTX = stg.Production.API_SEND_RTX
+
+    WX_APPID = stg.Production.APPID
+    WX_APPSECRET = stg.Production.APPSECRET
+    WX_TOKEN = stg.Production.Token
+    WX_EncodingAESKey = stg.Production.EncodingAESKey
+    WX_messageCryptolevel = stg.Production.messageCryptolevel
+    SECRET_KEY = stg.Production.SECRET_KEY
+except:
+    raise Exception(u'Need settings_without_git.py. For more details, please contact the administrator.')
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,7 +39,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'j#t@0b$r66%u0x0(1fy_8wxh4ayxfgw@lw$&7dod*gv*es4q24'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -74,20 +93,15 @@ WSGI_APPLICATION = 'wechat.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
+#LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-cn'
+#TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -100,3 +114,91 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+       'standard': {
+            'format': '%(asctime)s [%(threadName)s:%(thread)d] [%(name)s:%(lineno)d] [%(module)s:%(funcName)s] [%(levelname)s]- %(message)s'}  #日志格式
+    },
+    'filters': {
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'include_html': True,
+        },
+        'default': {
+            'level':'DEBUG',
+            'class':'logging.handlers.TimedRotatingFileHandler',
+            'filename': '/log/all.log',     #日志输出文件
+            'when': 'midnight',
+            'interval':1,                  #文件大小
+            'backupCount': 5,                         #备份份数
+            'formatter':'standard',                   #使用哪种formatters日志格式
+        },
+        'error': {
+            'level':'ERROR',
+            'class':'logging.handlers.TimedRotatingFileHandler',
+            'filename': 'log/error.log',
+            'when': 'midnight',
+            'interval':1,
+            'backupCount': 5,
+            'formatter':'standard',
+        },
+        'console':{
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard'
+        },
+        'request_handler': {
+            'level':'DEBUG',
+            'class':'logging.handlers.TimedRotatingFileHandler',
+            'filename': 'log/script.log',
+            'when': 'midnight',
+            'interval':1,
+            'backupCount': 5,
+            'formatter':'standard',
+        },
+        'scprits_handler': {
+            'level':'DEBUG',
+            'class':'logging.handlers.TimedRotatingFileHandler',
+            'filename':'log/script.log',
+            'when': 'midnight',
+            'interval':1,
+            'backupCount': 5,
+            'formatter':'standard',
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['default', 'error'],
+            'level': 'DEBUG',
+            'propagate': False
+        },
+        'django.request': {
+            'handlers': ['request_handler'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        'scripts': {
+            'handlers': ['scprits_handler'],
+            'level': 'INFO',
+            'propagate': False
+        },
+        'sourceDns.webdns.views': {
+            'handlers': ['default', 'error'],
+            'level': 'DEBUG',
+            'propagate': True
+        },
+        'sourceDns.webdns.util':{
+            'handlers': ['error'],
+            'level': 'ERROR',
+            'propagate': True
+        }
+    }
+}

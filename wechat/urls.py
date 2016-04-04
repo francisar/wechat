@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding:utf-8 -*-
 """wechat URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -15,7 +17,9 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from base.weixin import Weixin
 
 urlpatterns = [
+    (r'^',Weixin.as_view()),
     url(r'^admin/', include(admin.site.urls)),
 ]

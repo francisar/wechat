@@ -4,7 +4,7 @@ __pycache__/
 .idea
 .idea/
 *$py.class
-
+settings_without_git.py
 # C extensions
 *.so
 
