@@ -29,6 +29,7 @@ try:
     WX_EncodingAESKey = stg.Production.EncodingAESKey
     WX_messageCryptolevel = stg.Production.messageCryptolevel
     SECRET_KEY = stg.Production.SECRET_KEY
+    DEBUG = stg.Production.DEBUG
 except:
     raise Exception(u'Need settings_without_git.py. For more details, please contact the administrator.')
 
@@ -42,7 +43,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
 
 ALLOWED_HOSTS = []
 

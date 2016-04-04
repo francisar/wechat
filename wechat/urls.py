@@ -20,6 +20,6 @@ from django.contrib import admin
 from base.weixin import Weixin
 
 urlpatterns = [
-    (r'^',Weixin.as_view()),
+    url(r'^',Weixin.as_view()),
     url(r'^admin/', include(admin.site.urls)),
 ]
