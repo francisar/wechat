@@ -25,6 +25,6 @@ class Texthandler(object):
             if case():
                 break
         return self.__result
- 
+
     def handle(self):
         return self.__do_command()

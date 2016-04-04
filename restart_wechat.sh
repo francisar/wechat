@@ -9,7 +9,7 @@ KEEPALIVE=20
 WORKERS=5
 TIMEOUT=120
 WORKERCONNECTIONS=100
-MAX-REQUESTS=40
+MAX_REQUESTS=40
 # stop
 for pid in `ps -ef|grep $GUNICORN_EXEC|grep $WSGI_NAME|grep -v grep| awk '$3 ==1 {print $2}'`
 do
@@ -17,4 +17,4 @@ do
 done
 
 # start
-nohup $GUNICORN_EXEC $WSGI_NAME -b $LISTEN -w $WORKERS --worker-connections $WORKERCONNECTIONS -t $TIMEOUT     --max-requests $MAX-REQUESTS --keep-alive $KEEPALIVE -D --access-logfile $ACCESS_LOG 2>&1 &
+nohup $GUNICORN_EXEC $WSGI_NAME -b $LISTEN -w $WORKERS --worker-connections $WORKERCONNECTIONS -t $TIMEOUT     --max-requests $MAX_REQUESTS --keep-alive $KEEPALIVE -D --access-logfile $ACCESS_LOG 2>&1 &
