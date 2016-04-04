@@ -158,16 +158,7 @@ LOGGING = {
         'request_handler': {
             'level':'DEBUG',
             'class':'logging.handlers.TimedRotatingFileHandler',
-            'filename': 'log/script.log',
-            'when': 'midnight',
-            'interval':1,
-            'backupCount': 5,
-            'formatter':'standard',
-        },
-        'scprits_handler': {
-            'level':'DEBUG',
-            'class':'logging.handlers.TimedRotatingFileHandler',
-            'filename':'log/script.log',
+            'filename': 'log/request.log',
             'when': 'midnight',
             'interval':1,
             'backupCount': 5,
@@ -184,21 +175,6 @@ LOGGING = {
             'handlers': ['request_handler'],
             'level': 'DEBUG',
             'propagate': False,
-        },
-        'scripts': {
-            'handlers': ['scprits_handler'],
-            'level': 'INFO',
-            'propagate': False
-        },
-        'sourceDns.webdns.views': {
-            'handlers': ['default', 'error'],
-            'level': 'DEBUG',
-            'propagate': True
-        },
-        'sourceDns.webdns.util':{
-            'handlers': ['error'],
-            'level': 'ERROR',
-            'propagate': True
         }
     }
 }
