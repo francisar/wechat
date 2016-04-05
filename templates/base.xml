@@ -1,0 +1,8 @@
+#coding=utf-8
+<xml>
+<ToUserName><![CDATA[{{ ToUserName }}]]></ToUserName>
+<FromUserName><![CDATA[{{ FromUserName }}]]></FromUserName>
+<CreateTime>{{ CreateTime }}</CreateTime>
+{% block content %}
+{% endblock %}
+</xml>

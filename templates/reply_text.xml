@@ -1,0 +1,6 @@
+#coding=utf-8
+{% extends "base.xml" %}
+{% block content %}
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[{{ Content|safe }}]]></Content>
+{% endblock %}
