@@ -52,11 +52,11 @@ class WechatApi(object):
         """获取access_token，利用django cache进行缓存，缓存时间为过期时间7200秒减掉100秒"""
         token_cache_key = self.__appid + '_access_token'
         self.__access_token = cache.get(token_cache_key, None)
-        if self.access_token is None:
+        if self.__access_token is None:
             url = self.URL_GET_TOKEN % (self.__appid, self.__secret)
             result = self.get_json_from_wechat(url)
             self.__access_token = result["access_token"]
-            cache.set(token_cache_key, self.access_token, result['expires_in'] - 100)
+            cache.set(token_cache_key, self.__access_token, result['expires_in'] - 100)
         return self.__access_token
 
     def get_authorize_url(self, redirect_uri):
