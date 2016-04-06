@@ -9,8 +9,8 @@ class WechatApi(object):
     #URL_GET_DEPARTMENT_USER = URL_ROOT_API + '/cgi-bin/user/simplelist' + '?access_token=%s&department_id=%s&fetch_child=%s&status=%s'
     #URL_GET_USER_INFO = URL_ROOT_API + '/cgi-bin/user/getuserinfo' + '?access_token=%s&code=%s'
     URL_GET_WECHAT_IP = URL_ROOT_API + '/cgi-bin/getcallbackip' + '?access_token=%s'
-    URL_MENU_DELETE = URL_ROOT_API + '/cgi-bin/menu/delete' +"access_token=%s"
-    URL_MENU_CREATE = URL_ROOT_API + '/cgi-bin/menu/delete' +"access_token=%s"
+    URL_MENU_DELETE = URL_ROOT_API + '/cgi-bin/menu/delete' +"?access_token=%s"
+    URL_MENU_CREATE = URL_ROOT_API + '/cgi-bin/menu/delete' +"?access_token=%s"
     #URL_MESSAGE_SEND = URL_ROOT_API + '/cgi-bin/message/send' + '?access_token=%s'
     #URL_MEDIA_UPLOAD = URL_ROOT_API + '/cgi-bin/media/upload' + '?access_token=%s&type=%s'
     #URL_GET_USER_DETAIL = URL_ROOT_API + '/cgi-bin/user/get' + "?access_token=%s&userid=%s"
